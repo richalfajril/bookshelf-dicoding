@@ -1,0 +1,389 @@
+/* ============================================================
+    🎨 GLOBAL VARIABLES & BASE STYLES
+============================================================ */
+:root {
+  --bg: #0f1724; /* deep navy */
+  --card: #0b1220; /* almost black */
+  --muted: #9aa4b2;
+  --accent: #60a5fa; /* sky-400 */
+  --accent-2: #7c3aed; /* violet */
+  --success: #10b981; /* green */
+  --danger: #ef4444; /* red */
+  --warning: #f59e0b; /* amber */
+  --glass: rgba(255, 255, 255, 0.04);
+  --radius: 10px;
+  --max-width: 80%;
+  --gap: 18px;
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial;
+}
+
+/* Reset & Base */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100%;
+  font-family: var(--font-sans);
+  background: linear-gradient(180deg, #071123e9 0%, var(--bg) 100%);
+  color: #e6eef8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 32px 20px;
+}
+
+/* ============================================================
+    🧭 LAYOUT STRUCTURE
+============================================================ */
+header {
+  max-width: var(--max-width);
+  margin: 0 auto 28px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+  border-radius: var(--radius);
+}
+
+header h1 {
+  margin: 0;
+  font-size: clamp(18px, 3vw, 28px);
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-align: center;
+}
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+
+/* ============================================================
+    📦 SECTION & CARD BASE
+============================================================ */
+section {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  padding: 18px;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+  margin-bottom: 22px;
+}
+
+section h2 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  color: #dff1ff;
+}
+
+/* ============================================================
+    🔘 BUTTON STYLES
+============================================================ */
+button {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border: none;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.18);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button.active,
+button[aria-pressed="true"] {
+  box-shadow: 0 10px 30px rgba(96, 165, 250, 0.12);
+}
+
+/* ============================================================
+    📝 FORM STYLES
+============================================================ */
+form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  align-items: end;
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+label {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+form > div.input_inline {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 8px;
+}
+
+form > div.input_inline label {
+  margin-right: auto;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="search"] {
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 8px;
+  outline: none;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus {
+  box-shadow: 0 6px 18px rgba(96, 165, 250, 0.08),
+    0 0 0 4px rgba(96, 165, 250, 0.06);
+  border-color: var(--accent);
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius);
+}
+
+/* Search Form */
+[data-testid="searchBookForm"] {
+  display: grid;
+  grid-template-columns: 70% auto;
+}
+
+/* ============================================================
+    📚 TAB SWITCHING
+============================================================ */
+.tabs {
+  display: flex;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+/* Tab Button */
+.tabs .tab {
+  background: transparent;
+  color: var(--muted);
+  padding: 16px;
+  border-radius: var(--radius) var(--radius) 0 0;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.tabs .tab:hover {
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: none;
+  transform: none;
+}
+
+.tabs .tab.active {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.03)
+  );
+  color: #fff;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Tab Panels */
+#incompleteSection {
+  border-radius: 0 var(--radius) var(--radius) var(--radius);
+}
+
+#completeSection {
+  border-radius: var(--radius);
+}
+
+/* ============================================================
+    📖 BOOK LIST & CARD
+============================================================ */
+#incompleteBookList,
+#completeBookList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--gap);
+}
+
+/* Book Card */
+[data-testid="bookItem"] {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+[data-testid="bookItem"] h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #fff;
+}
+
+[data-testid="bookItem"] p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Action Buttons */
+[data-testid="bookItem"] > div {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+[data-testid="bookItem"] button {
+  background: transparent;
+  border: 1px solid rgba(96, 165, 250, 0.12);
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* Individual Buttons */
+[data-testid="bookItemIsCompleteButton"] {
+  color: var(--success);
+  border-color: var(--success);
+}
+
+[data-testid="bookItemDeleteButton"] {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+[data-testid="bookItemEditButton"] {
+  color: var(--warning);
+  border-color: var(--warning);
+}
+
+/* Hover States */
+[data-testid="bookItemIsCompleteButton"]:hover,
+[data-testid="bookItemIsCompleteButton"]:focus {
+  background: var(--success);
+  color: #fff;
+}
+
+[data-testid="bookItemDeleteButton"]:hover,
+[data-testid="bookItemDeleteButton"]:focus {
+  background: var(--danger);
+  color: #fff;
+}
+
+[data-testid="bookItemEditButton"]:hover,
+[data-testid="bookItemEditButton"]:focus {
+  background: var(--warning);
+  color: #fff;
+}
+
+/* ============================================================
+    🖥️ RESPONSIVE LAYOUTS
+============================================================ */
+@media (min-width: 920px) {
+  main {
+    grid-template-columns: 360px 1fr;
+    align-items: start;
+  }
+
+  main > aside {
+    position: sticky;
+    top: 24px;
+    height: fit-content;
+  }
+
+  .search-section {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 420px) {
+  body {
+    padding: 20px 12px;
+  }
+
+  header,
+  main {
+    max-width: 100%;
+  }
+
+  form {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+    ♿ ACCESSIBILITY & UTILITIES
+============================================================ */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 18px;
+}
